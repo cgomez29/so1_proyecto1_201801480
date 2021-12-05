@@ -1,0 +1,17 @@
+@import "./commons.scss";
+
+* {
+    box-sizing: border-box;
+    margin: 0em;
+}
+
+body {
+    font-family: $Montserrat;
+    height: 100%;
+    width: 100%;
+    color: $dark;
+}
+
+#root {
+    height: 100%;
+}

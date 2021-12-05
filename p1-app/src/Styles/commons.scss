@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+$Montserrat: "Montserrat", sans-serif;
+
+// colors
+$dark: rgb(29, 29, 29);
+$light: #fff;
+$primary: rgb(116, 116, 116);
+$bg: rgb(179, 179, 179);
+
+
+// spacing
+$spacing-md: 16px;
+$spacing-lg: 32px;
+
+// border radius
+$borderRadius: 12px;
+
+// header height
+$sidebarWidthOpen: 1px;
+$sidebarWidth: 60px;
+
+@mixin transition($property) {
+    transition: $property 0.2s ease-in-out;
+}
