@@ -1,0 +1,11 @@
+@import "../commons.scss";
+
+.graph {
+    margin-top: 5rem;
+    width: 70%;
+
+    @include screen_sm {
+        margin-top: 5px;
+        width: 100%;
+    }
+}

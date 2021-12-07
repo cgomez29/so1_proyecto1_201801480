@@ -1,7 +1,7 @@
 import { SideBarItem, SidebarMenuCard } from '../../interfaces/types';
 import { classNames } from '../../util/clasess';
 import { VscMenu } from 'react-icons/vsc'
-import { SideBarMenuCardView } from './SideBarMenuCardView'
+/* import { SideBarMenuCardView } from './SideBarMenuCardView' */
 import { SideBarMenuItemView } from './SideBarMenuItemView'
 
 import '../../Styles/SideBar/sidebar.scss';
@@ -29,7 +29,7 @@ export const SideBar = ({ items, card, isOpen, setIsOpen }: SideBarMenuProps) =>
                     <VscMenu />
                 </button>
             </div>
-            <SideBarMenuCardView card={ card } isOpen={ isOpen } />
+            {/* <SideBarMenuCardView card={ card } isOpen={ isOpen } /> */}
             {
                 items.map(item => (
                     <SideBarMenuItemView key={ item.id } item={ item } isOpen={ isOpen } />

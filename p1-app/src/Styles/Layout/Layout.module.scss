@@ -4,30 +4,38 @@
     background: $bg;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     @include transition(margin-left);
-    margin-left: 250px;
-    
+    margin: 50px 20px 20px 260px;
     h1 {
         padding: 1.5rem 2.5rem;
         background: linear-gradient(220deg, $primary, rgba($primary, 0.5));
         border-radius: $borderRadius calc(#{$borderRadius} * 10);
+        width: 100%;
     }
+    
+    @include screen_sm {
+        margin: 50px 20px 20px 70px;
+    }
+    
 }
 
 .container2 {
     background: $bg;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     @include transition(margin-left);
-    margin-left: 60px;
+    margin: 50px 20px 20px 70px;
 
     h1 {
         padding: 1.5rem 2.5rem;
         background: linear-gradient(220deg, $primary, rgba($primary, 0.5));
         border-radius: $borderRadius calc(#{$borderRadius} * 10);
+        width: 100%;
     }
 }

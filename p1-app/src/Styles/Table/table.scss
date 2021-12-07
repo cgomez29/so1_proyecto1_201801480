@@ -1,0 +1,65 @@
+@import "../commons.scss";
+
+.table {
+    width: 80%;
+    border-collapse: collapse;
+    td, th {
+        padding: 10px;
+    }
+    &_caption {
+        color: white;
+        letter-spacing: 5px;
+    }
+    &_head {
+        border-bottom: 2px solid $primary;
+        @include screen_sm {
+            display: none;
+        }
+    }
+    &_heading{
+        color: white;
+        font-size: 14px;
+        letter-spacing: 5px;
+        text-align: left;
+    }
+    &_row {
+        height: 65px;
+        &:hover {
+            animation-duration: 0.4s;
+            background-color: $primary;
+        }
+        @include screen_sm {
+            &:nth-of-type(even) {
+                background: black;
+            }
+            &:hover {
+                animation-duration: 0.4s;
+                background-color: $primary;
+            }
+        }
+    }
+    &_cell {
+        font-size: 12px;
+        letter-spacing: 3px;
+        border-bottom: 1px solid $primary;
+        color: white;
+        .label {
+            display: none;
+        }
+
+        @include screen_sm {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: right;
+            
+            .label{
+                color: white;
+                font-size: 20px;
+                letter-spacing: 5px;
+                text-align: left;
+                display: block;
+            }
+        }
+    }
+}

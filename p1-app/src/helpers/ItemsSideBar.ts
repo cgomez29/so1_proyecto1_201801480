@@ -4,20 +4,20 @@ import { FcLinux, FcComboChart, FcSettings } from 'react-icons/fc';
 export const items: SideBarItem[] = [
     {
         id: "1",
-        label: "Hola",
+        label: "Dashboard",
         icon: FcLinux,
         url: "/"
     },
     {
-        id: "3",
-        label: "Hola",
+        id: "2",
+        label: "RAM",
         icon: FcComboChart,
-        url: "/"
+        url: "/ram"
     },
     {
-        id: "2",
-        label: "Hola",
+        id: "3",
+        label: "CPU",
         icon: FcSettings,
-        url: "/"
+        url: "/cpu"
     },
 ];

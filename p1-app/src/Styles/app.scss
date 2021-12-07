@@ -2,7 +2,7 @@
 
 * {
     box-sizing: border-box;
-    margin: 0em;
+    margin: 0;
 }
 
 body {
@@ -10,6 +10,7 @@ body {
     height: 100%;
     width: 100%;
     color: $dark;
+    background: #222;
 }
 
 #root {

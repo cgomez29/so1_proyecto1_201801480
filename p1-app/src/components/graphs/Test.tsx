@@ -1,9 +1,10 @@
 import { LineChart, LineChartProps } from "@opd/g2plot-react";
+import '../../Styles/graphs/graphs.scss';
 
 
 const data = [
   {
-    date: "2018/8/1",
+    date: "1",
     type: "download",
     value: 4623
   },
@@ -96,11 +97,16 @@ const config: LineChartProps = {
   data,
   xField: "date",
   yField: "value",
+  xAxis: {
+    label: {
+      autoHide: true,
+    }
+  },
   yAxis: {
     label: {
       // 数值格式化为千分位
       formatter: (v) => `${v}`.replace(/\d{1,3}(?=(\d{3})+$)/g, (s) => `${s},`)
-    }
+    },
   },
   legend: {
     position: "right-top"
@@ -111,10 +117,9 @@ const config: LineChartProps = {
 const GraphLine = () => {
 
   return (
-    <section>
-      <h2>LineChart Example</h2>
-      <LineChart {...config} />
-    </section>
+    <>
+      <LineChart className="graph" {...config} />
+    </>
   );
 };
 

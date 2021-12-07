@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/cgomez29/so1_proyecto1_201801480/controllers"
 	"github.com/cgomez29/so1_proyecto1_201801480/middleware"
 	"github.com/cgomez29/so1_proyecto1_201801480/socket"
 	"github.com/gin-gonic/gin"
@@ -8,7 +9,8 @@ import (
 )
 
 var (
-	server *socketio.Server = socket.CreateServerSocket()
+	server          *socketio.Server            = socket.CreateServerSocket()
+	modulController controllers.ModulController = controllers.NewModulController()
 )
 
 func main() {
@@ -24,6 +26,7 @@ func main() {
 	router.Use(middleware.GinMiddleware("http://localhost:3000"))
 
 	//routes
+	router.GET("/test", modulController.InfoTimeStamp)
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(200, "index.html", gin.H{
 			"title": "api",

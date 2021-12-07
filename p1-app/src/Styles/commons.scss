@@ -6,7 +6,8 @@ $Montserrat: "Montserrat", sans-serif;
 $dark: rgb(29, 29, 29);
 $light: #fff;
 $primary: rgb(116, 116, 116);
-$bg: rgb(179, 179, 179);
+$bg: #222;
+//$bg: rgb(179, 179, 179);
 
 
 // spacing
@@ -22,4 +23,16 @@ $sidebarWidth: 60px;
 
 @mixin transition($property) {
     transition: $property 0.2s ease-in-out;
+}
+
+@mixin screen_up_sm {
+    @media (min-width: 540px) {
+        @content;
+    }
+}
+
+@mixin screen_sm {
+    @media (max-width: 540px) {
+        @content;
+    }
 }
