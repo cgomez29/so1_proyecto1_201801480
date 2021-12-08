@@ -20,7 +20,7 @@ static int escribir_a_proc(struct seq_file *file_proc, void *v) {
     used = (inf.totalram - inf.freeram - inf.bufferram ) * inf.mem_unit/1000000;
     percentage = (used * 100)/total;  
     
-    seq_printf(file_proc,"{\"total\":\"%lu\", \"used\":\"%lu\", \"percentage\":\"%lu\"", total, used, percentage);
+    seq_printf(file_proc,"{\"total\":\"%lu\", \"used\":\"%lu\", \"percentage\":\"%lu\"}", total, used, percentage);
     
     return 0;
 }

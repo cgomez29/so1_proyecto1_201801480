@@ -13,6 +13,7 @@ import (
 //ModulController interface is a contract what this controller can do
 type ModulController interface {
 	InfoTimeStamp(ctx *gin.Context)
+	InfoMemo(ctx *gin.Context)
 }
 
 type modulController struct {
@@ -47,7 +48,6 @@ func (c *modulController) InfoMemo(ctx *gin.Context) {
 	json.Unmarshal([]byte(data), &dataJson)
 
 	ctx.JSON(http.StatusOK, dataJson)
-
 }
 
 func (c *modulController) InfoCPU(ctx *gin.Context) {

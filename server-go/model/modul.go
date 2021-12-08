@@ -4,6 +4,10 @@ type Data struct {
 	Timestamp string `json:"timestamp"`
 }
 
+type Init struct {
+	Run string `json:"run"`
+}
+
 type RAM struct {
 	Total      string `json:"total"`
 	Used       string `json:"used"`
