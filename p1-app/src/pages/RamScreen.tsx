@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import GraphLine from '../components/graphs/Test';
-import { w3cwebsocket } from 'websocket';
-import { Card } from '../components/Card/Card'
-import { getRamState } from '../helpers/Ram'
-import { RAMData } from '../interfaces/RamScreen'
-const client = new w3cwebsocket('ws://localhost:4000/ram');
+import { ChartRam } from '../components/graphs/ChartRam';
+import { Card } from '../components/Card/Card';
+import { getRamState } from '../helpers/Ram';
+import { RAMData } from '../interfaces/RamScreen';
+import { AxiosResponse } from 'axios'
 
 
 export const RamScreen = () => {
@@ -18,24 +17,11 @@ export const RamScreen = () => {
     const { total, used, percentage } = ram;
 
     useEffect(() => {
-
-       getRamState().then(({ data }) => {
+       getRamState().then(({ data } : AxiosResponse) => {
+           console.log(data)
            setRam(data)
        })
         
-        client.onopen = () => {
-            console.log("Websocket client connected")
-            const obj = { run: "start" };
-            client.send(JSON.stringify(obj));
-        }
-
-        client.onmessage = (evt) => {
-            console.log("Received Message: " + evt.data);
-        };
-        
-        client.onclose = function (evt) {
-          console.log("Connection closed.");
-        };
     }, [])
 
     return (
@@ -46,7 +32,7 @@ export const RamScreen = () => {
             <Card title={ 'Total RAM (MB)' } body={ total } />
             <Card title={ 'Used RAM (MB)' } body={ used } />
             <Card title={ '%RAM' } body={ percentage } />
-            <GraphLine />
+            <ChartRam />
         </>
     )
 }

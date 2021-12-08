@@ -66,9 +66,9 @@ func (c *webSocket) RAM(ctx *gin.Context) {
 		err = ws.WriteJSON(getDataRam())
 
 		if err != nil {
-			log.Println("error write json" + err.Error())
+			log.Println("error write json " + err.Error())
 		}
-		time.Sleep(1 * time.Second)
+		time.Sleep(2 * time.Second)
 	}
 }
 

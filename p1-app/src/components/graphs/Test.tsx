@@ -1,100 +1,26 @@
 import { LineChart, LineChartProps } from "@opd/g2plot-react";
+import { w3cwebsocket } from 'websocket';
+import { useEffect } from "react";
+import { GraphLineData, RAMData } from '../../interfaces/RamScreen';
+import moment from 'moment';
+
 import '../../Styles/graphs/graphs.scss';
 
-
-const data = [
+let dataArray : GraphLineData[] = [
   {
-    date: "1",
-    type: "download",
-    value: 4623
-  },
-  {
-    date: "2018/8/1",
-    type: "bill",
-    value: 182
-  },
-  {
-    date: "2018/8/2",
-    type: "download",
-    value: 6145
-  },
-  {
-    date: "2018/8/2",
-    type: "register",
-    value: 2016
-  },
-  {
-    date: "2018/8/2",
-    type: "bill",
-    value: 257
-  },
-  {
-    date: "2018/8/3",
-    type: "download",
-    value: 508
-  },
-  {
-    date: "2018/8/3",
-    type: "register",
-    value: 2916
-  },
-  {
-    date: "2018/8/3",
-    type: "bill",
-    value: 289
-  },
-  {
-    date: "2018/8/4",
-    type: "download",
-    value: 6268
-  },
-  {
-    date: "2018/8/4",
-    type: "register",
-    value: 4512
-  },
-  {
-    date: "2018/8/4",
-    type: "bill",
-    value: 428
-  },
-  {
-    date: "2018/8/5",
-    type: "download",
-    value: 6411
-  },
-  {
-    date: "2018/8/5",
-    type: "register",
-    value: 8281
-  },
-  {
-    date: "2018/8/5",
-    type: "bill",
-    value: 619
-  },
-  {
-    date: "2018/8/6",
-    type: "download",
-    value: 1890
-  },
-  {
-    date: "2018/8/6",
-    type: "register",
-    value: 2008
-  },
-  {
-    date: "2018/8/6",
-    type: "bill",
-    value: 87
+    date: '',
+    type: 'ram',
+    value: 0
   },
 ];
+
+const client = new w3cwebsocket('ws://localhost:4000/ram');
 
 const config: LineChartProps = {
   /* theme: "dark", */
   padding: "auto",
   autoFit: true,
-  data,
+  data: dataArray,
   xField: "date",
   yField: "value",
   xAxis: {
@@ -111,14 +37,40 @@ const config: LineChartProps = {
   legend: {
     position: "right-top"
   },
-  seriesField: "type"
+  seriesField: "type",
+
 };
 
 const GraphLine = () => {
+  /* const [dataGraph, setDataGraph] = useState<GraphLineData>({
+        time: '17',
+        type: 'ram',
+        value: '16',
+    })
+ */
+  useEffect(() => {
+    client.onopen = () => {
+      console.log("Websocket client connected")
+      const obj = { run: "start" };
+      client.send(JSON.stringify(obj));
+    }
+
+    client.onmessage = (evt) => {
+      console.log("Received Message: " + evt.data);
+      const data :RAMData = JSON.parse(JSON.stringify(evt.data));
+      /* setDataGraph({value: data.value, time: '', type: 'ram'}); */
+      dataArray.push({date: moment().format('LTS'), type: 'ram', value: parseFloat(data.used) }) 
+      dataArray.shift();
+    };
+     
+    client.onclose = (evt) => {
+      console.log("Connection closed.");
+    };
+  }, [])
 
   return (
     <>
-      <LineChart className="graph" {...config} />
+      <LineChart className="graph" {...config} data={dataArray} />
     </>
   );
 };
