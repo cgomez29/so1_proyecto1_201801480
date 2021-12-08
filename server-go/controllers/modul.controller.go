@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"os"
+	"strconv"
 
 	"github.com/cgomez29/so1_proyecto1_201801480/model"
 	"github.com/gin-gonic/gin"
@@ -14,6 +16,7 @@ import (
 type ModulController interface {
 	InfoTimeStamp(ctx *gin.Context)
 	InfoMemo(ctx *gin.Context)
+	KillPorcess(ctx *gin.Context)
 }
 
 type modulController struct {
@@ -51,5 +54,30 @@ func (c *modulController) InfoMemo(ctx *gin.Context) {
 }
 
 func (c *modulController) InfoCPU(ctx *gin.Context) {
+
+}
+
+func (c *modulController) KillPorcess(ctx *gin.Context) {
+	id, err := strconv.Atoi(ctx.Param("id")) //get id process
+
+	if err != nil {
+		fmt.Println("ID incorrect")
+	}
+
+	process, err := os.FindProcess(id)
+
+	if err != nil {
+		fmt.Println("ID incorrect")
+	}
+
+	err = process.Kill()
+
+	if err != nil {
+		fmt.Println("ID incorrect")
+	}
+
+	ctx.JSON(http.StatusOK, gin.H{
+		"message": "Succesfull",
+	})
 
 }

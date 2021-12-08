@@ -25,6 +25,7 @@ func main() {
 	//routes
 	router.GET("/api/test", modulController.InfoTimeStamp)
 	router.GET("/api/ram", modulController.InfoMemo)
+	router.GET("/api/kill/:id", modulController.KillPorcess)
 	router.GET("/ram", webSocket.RAM)
 	router.GET("/", func(c *gin.Context) {
 		c.HTML(200, "index.html", gin.H{
