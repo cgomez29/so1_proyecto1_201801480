@@ -25,13 +25,16 @@ func main() {
 	//routes
 	router.GET("/api/test", modulController.InfoTimeStamp)
 	router.GET("/api/ram", modulController.InfoMemo)
+	router.GET("/api/cpu", modulController.InfoCPU)
 	router.GET("/api/kill/:id", modulController.KillPorcess)
+	//WebSocket
 	router.GET("/ram", webSocket.RAM)
-	router.GET("/", func(c *gin.Context) {
+	router.GET("/cpu", webSocket.CPU)
+	/* 	router.GET("/", func(c *gin.Context) {
 		c.HTML(200, "index.html", gin.H{
 			"title": "api",
 		})
-	})
+	}) */
 
 	router.Run(":4000")
 }

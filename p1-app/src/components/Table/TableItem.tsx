@@ -1,4 +1,4 @@
-import React from 'react'
+import { FaBookDead } from 'react-icons/fa';
 
 interface Data {
     pid: string;
@@ -31,6 +31,12 @@ export const TableItem = ( {data, headers}: TableItemProps ) => {
             </td>
             <td className="table_cell" >
                 <label className="label">{ headers[4] }</label> { ram } 
+            </td>
+            <td className="table_cell">
+                <button className="btn_kill"> 
+                    <label className="label">{ headers[5] }</label>
+                    <FaBookDead className='btn_kill_icon' /> 
+                </button>
             </td>
         </tr>
     )

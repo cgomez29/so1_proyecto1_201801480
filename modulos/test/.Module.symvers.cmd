@@ -1,1 +1,0 @@
-cmd_/home/cristian/USAC/Proyecto1/modulos/test/Module.symvers := sed 's/ko$$/o/' /home/cristian/USAC/Proyecto1/modulos/test/modules.order | scripts/mod/modpost -m -a   -o /home/cristian/USAC/Proyecto1/modulos/test/Module.symvers -e -i Module.symvers   -T -

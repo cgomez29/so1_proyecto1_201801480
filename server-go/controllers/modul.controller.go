@@ -8,6 +8,7 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/cgomez29/so1_proyecto1_201801480/helper"
 	"github.com/cgomez29/so1_proyecto1_201801480/model"
 	"github.com/gin-gonic/gin"
 )
@@ -16,6 +17,7 @@ import (
 type ModulController interface {
 	InfoTimeStamp(ctx *gin.Context)
 	InfoMemo(ctx *gin.Context)
+	InfoCPU(ctx *gin.Context)
 	KillPorcess(ctx *gin.Context)
 }
 
@@ -41,20 +43,11 @@ func (c *modulController) InfoTimeStamp(ctx *gin.Context) {
 }
 
 func (c *modulController) InfoMemo(ctx *gin.Context) {
-	data, err := ioutil.ReadFile("/proc/memo_201801480")
-
-	if err != nil {
-		fmt.Println(err)
-	}
-
-	var dataJson model.RAM
-	json.Unmarshal([]byte(data), &dataJson)
-
-	ctx.JSON(http.StatusOK, dataJson)
+	ctx.JSON(http.StatusOK, helper.GetDataRam())
 }
 
 func (c *modulController) InfoCPU(ctx *gin.Context) {
-
+	ctx.JSON(http.StatusOK, helper.GetDataCPU())
 }
 
 func (c *modulController) KillPorcess(ctx *gin.Context) {
@@ -79,5 +72,4 @@ func (c *modulController) KillPorcess(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, gin.H{
 		"message": "Succesfull",
 	})
-
 }

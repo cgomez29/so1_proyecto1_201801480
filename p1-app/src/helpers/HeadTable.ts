@@ -4,6 +4,7 @@ export const heads = [
     'User',
     'State',
     '%RAM',
+    'KILL',
 ];
 
 export const data = [

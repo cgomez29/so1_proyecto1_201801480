@@ -1,7 +1,8 @@
 @import '../commons.scss';
 
 .SideBarMenu {
-    background-color: #222;
+    //background-color: #222;
+    background-color: whitesmoke;
     color: white;
     position: absolute;
     left: 0;
@@ -31,7 +32,6 @@
         cursor: pointer;
         border: none;
         background-color: transparent;
-        color: white;
         padding: 10px;
         width: 68px;
     }

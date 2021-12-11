@@ -1,7 +1,7 @@
 @import "../commons.scss";
 
 .container {
-    background: $bg;
+    //background: $bg;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -9,11 +9,12 @@
     height: 100%;
     @include transition(margin-left);
     margin: 50px 20px 20px 260px;
+    letter-spacing: 5px;
     h1 {
         padding: 1.5rem 2.5rem;
-        background: linear-gradient(220deg, $primary, rgba($primary, 0.5));
+/*         background: linear-gradient(220deg, $primary, rgba($primary, 0.5));
         border-radius: $borderRadius calc(#{$borderRadius} * 10);
-        width: 100%;
+ */        width: 100%;
     }
     
     @include screen_sm {
@@ -23,7 +24,7 @@
 }
 
 .container2 {
-    background: $bg;
+    //background: $bg;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -32,10 +33,11 @@
     @include transition(margin-left);
     margin: 50px 20px 20px 70px;
 
+
     h1 {
         padding: 1.5rem 2.5rem;
-        background: linear-gradient(220deg, $primary, rgba($primary, 0.5));
-        border-radius: $borderRadius calc(#{$borderRadius} * 10);
+/*         background: linear-gradient(220deg, $primary, rgba($primary, 0.5));
+        border-radius: $borderRadius calc(#{$borderRadius} * 10); */
         width: 100%;
     }
 }

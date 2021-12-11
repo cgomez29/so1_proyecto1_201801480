@@ -17,7 +17,9 @@ export const Dashboard = () => {
                 <Card title={ 'Zombie' } body={ '0' } />
                 <Card title={ 'Total' } body={ '250' } />
             </div>
-            <Table headers={heads} data={data} />
+            <div className="table-container">
+                <Table headers={heads} data={data} />
+            </div>
         </>
     )
 }

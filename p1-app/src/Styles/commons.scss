@@ -6,20 +6,26 @@ $Montserrat: "Montserrat", sans-serif;
 $dark: rgb(29, 29, 29);
 $light: #fff;
 $primary: rgb(116, 116, 116);
+$secondary: rgb(88, 88, 88);
 $bg: #222;
+$bg2: rgb(214, 214, 214);
 //$bg: rgb(179, 179, 179);
 
 
 // spacing
+$spacing-sm: 8px;
 $spacing-md: 16px;
 $spacing-lg: 32px;
 
 // border radius
-$borderRadius: 12px;
+$borderRadius: 8px;
 
 // header height
 $sidebarWidthOpen: 1px;
 $sidebarWidth: 60px;
+
+$box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11), 0 2px 2px rgba(0, 0, 0, 0.11),
+0 4px 4px rgba(0, 0, 0, 0.11), 0 6px 8px rgba(0, 0, 0, 0.11), 0 8px 16px rgba(0, 0, 0, 0.11);
 
 @mixin transition($property) {
     transition: $property 0.2s ease-in-out;

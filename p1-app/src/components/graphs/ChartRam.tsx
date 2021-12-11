@@ -68,9 +68,15 @@ export const ChartRam: React.FC<any> = () => {
         client.onmessage = (evt) => {
             const dataR = JSON.parse((evt.data).toString());
             console.log(parseFloat(dataR?.used));
-            let array = [parseFloat(dataR?.used), ...data ];
+
+            /* let array = [parseFloat(dataR?.used), ...data ]; */
             
-            updateData(array.slice(0,9));
+            let array = [...data, parseFloat(dataR?.used), ];
+            if (data.length >= 9) {
+              array.shift();
+            }
+            
+            updateData(array);
 
         };
          
@@ -93,6 +99,7 @@ export const ChartRam: React.FC<any> = () => {
           data= {data}
           options={options}
           series={series}
+          height={420}
         />
     );
   };

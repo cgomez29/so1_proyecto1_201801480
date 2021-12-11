@@ -1,7 +1,7 @@
 @import "../commons.scss";
 
 .table {
-    width: 80%;
+    width: 100%;
     border-collapse: collapse;
     td, th {
         padding: 10px;
@@ -26,7 +26,7 @@
         height: 65px;
         &:hover {
             animation-duration: 0.4s;
-            background-color: $primary;
+            background-color: $secondary;
         }
         @include screen_sm {
             &:nth-of-type(even) {
@@ -34,7 +34,7 @@
             }
             &:hover {
                 animation-duration: 0.4s;
-                background-color: $primary;
+                background-color: $secondary;
             }
         }
     }
@@ -62,4 +62,17 @@
             }
         }
     }
+}
+
+.btn_kill {
+    border: none;
+    height: 35px;
+    width: 35px;
+    background: none;
+}
+
+.btn_kill_icon {
+    height: 40px;
+    width: 40px;
+    background: red;
 }

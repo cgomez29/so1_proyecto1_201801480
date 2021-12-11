@@ -1,5 +1,5 @@
 import { SideBarItem } from '../interfaces/types';
-import { FcLinux, FcComboChart, FcSettings } from 'react-icons/fc';
+import { FcLinux, FcComboChart, FcElectronics } from 'react-icons/fc';
 
 export const items: SideBarItem[] = [
     {
@@ -17,7 +17,7 @@ export const items: SideBarItem[] = [
     {
         id: "3",
         label: "CPU",
-        icon: FcSettings,
+        icon: FcElectronics,
         url: "/cpu"
     },
 ];
