@@ -5,11 +5,25 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os/exec"
+	"strconv"
 	"strings"
 
 	"github.com/cgomez29/so1_proyecto1_201801480/model"
 )
 
+// executeCommand method for execut commands inlinux
+func executeCommand(command string) string {
+	cmd := exec.Command("sh", "-c", command)
+	out, err := cmd.CombinedOutput()
+
+	if err != nil {
+		fmt.Println(err)
+	}
+	output := string(out[:])
+	return output
+}
+
+// GetDataRam method returns get data from module memo_201801480
 func GetDataRam() model.RAM {
 	data, err := ioutil.ReadFile("/proc/memo_201801480")
 
@@ -20,9 +34,20 @@ func GetDataRam() model.RAM {
 	var dataJson model.RAM
 	json.Unmarshal([]byte(data), &dataJson)
 
+	// getting de system cache
+	cache := executeCommand("free -b | head -n 2 | tail -n 1 | awk '{print $6}'")
+	cache = strings.Replace(cache, "\n", "", -1)
+	cacheInt, err := strconv.Atoi(cache)
+
+	// calculated (bytes -> mb)
+	dataJson.Used = (dataJson.Total - dataJson.Used - cacheInt) / 1000000
+	dataJson.Total = dataJson.Total / 1000000
+	dataJson.Percentage = dataJson.Used * 100 / dataJson.Total
+
 	return dataJson
 }
 
+// GetDataRam method returns get data from module cpu_201801480
 func GetDataCPU() model.CPU {
 	data, err := ioutil.ReadFile("/proc/cpu_201801480")
 
@@ -30,7 +55,7 @@ func GetDataCPU() model.CPU {
 		fmt.Println(err)
 	}
 
-	//correciones al json leido
+	// corrections to read json
 	dataStr := strings.Replace(string(data), ",]", "]", -1)
 	dataStr = strings.Replace(string(dataStr), "]},]", "}]", -1)
 
@@ -41,16 +66,43 @@ func GetDataCPU() model.CPU {
 		fmt.Println(err)
 	}
 
-	for i, val := range dataJson.Processes {
-		cmd := exec.Command("sh", "-c", "getent passwd "+val.User+" | cut -d: -f1")
-		out, err := cmd.CombinedOutput()
+	total_ram := GetDataRam().Total
 
-		if err != nil {
-			fmt.Println(err)
-		}
-		output := string(out[:])
-		dataJson.Processes[i].User = output
+	for i, val := range dataJson.Processes {
+		// username
+		cmd := "getent passwd " + val.User + " | cut -d: -f1"
+		dataJson.Processes[i].User = executeCommand(cmd)
+		// %ram
+		ram := dataJson.Processes[i].Ram / 1000000
+		dataJson.Processes[i].Ram = ram / total_ram
 	}
+
+	return dataJson
+}
+
+func GetDataUsedCPU() model.UsedCPU {
+
+	cmd := executeCommand("ps -eo pcpu | sort -k 1 -r | head -60 | tail -59")
+
+	list := strings.Split(cmd, "\n")
+
+	var dataJson model.UsedCPU
+	var cpu_utilizado float64
+
+	for _, val := range list {
+
+		value := strings.ReplaceAll(val, " ", "")
+		if value != "" {
+			item, err := strconv.ParseFloat(value, 64)
+
+			if err != nil {
+				fmt.Println(err)
+			}
+			cpu_utilizado += item
+		}
+	}
+
+	dataJson.CPU = cpu_utilizado / 12 // cpu -> 12
 
 	return dataJson
 }

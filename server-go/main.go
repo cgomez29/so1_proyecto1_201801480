@@ -30,6 +30,7 @@ func main() {
 	//WebSocket
 	router.GET("/ram", webSocket.RAM)
 	router.GET("/cpu", webSocket.CPU)
+	router.GET("/ucpu", webSocket.UsedCPU)
 	/* 	router.GET("/", func(c *gin.Context) {
 		c.HTML(200, "index.html", gin.H{
 			"title": "api",

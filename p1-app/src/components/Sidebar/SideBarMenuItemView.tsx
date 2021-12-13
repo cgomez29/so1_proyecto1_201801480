@@ -1,8 +1,8 @@
-import { SideBarItem } from "../../interfaces/types"
-import { classNames } from "../../util/clasess"
+import { SideBarItem } from '../../interfaces/types'
+import { classNames } from '../../util/clasess'
 
 import '../../Styles/SideBar/SideBarMenuItemView.scss';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 interface SideBarMenuItemViewProps {
     item: SideBarItem;
@@ -15,15 +15,15 @@ export const SideBarMenuItemView = ({ item, isOpen }: SideBarMenuItemViewProps) 
             <Link to={item.url}>
                 <div className={classNames('ItemContent', isOpen ? '': 'collapsed')}>
                     <div className='icon'>
-                        <item.icon size="32"/>
+                        <item.icon size='32'/>
                     </div>
-                    <span className="label">
+                    <span className='label'>
                         { item.label }
                     </span>
                 </div>
             </Link>
             {
-                !isOpen ? <div className="tooltip">
+                !isOpen ? <div className='tooltip'>
                     {
                         item.label
                     }

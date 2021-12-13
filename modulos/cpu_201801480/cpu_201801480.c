@@ -25,7 +25,7 @@ static int escribir_a_proc(struct seq_file *file_proc, void *v) {
         seq_printf(file_proc, "\"user\":\"%u\",\n",task->cred->uid.val);
         seq_printf(file_proc,"\"state\":%ld,\n",task->state);
 
-        // ram for process
+        // % ram for process
         if (task->mm) {
             ram = get_mm_rss(task->mm) << PAGE_SHIFT; // bytes
             seq_printf(file_proc, "\"ram\": %lu,\n", ram);

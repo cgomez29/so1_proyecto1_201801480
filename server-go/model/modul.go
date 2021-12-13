@@ -10,9 +10,9 @@ type Init struct {
 
 // for modul RAM
 type RAM struct {
-	Total      string `json:"total"`
-	Used       string `json:"used"`
-	Percentage string `json:"percentage"`
+	Total      int `json:"total"`
+	Used       int `json:"used"`
+	Percentage int `json:"percentage"`
 }
 
 // for modul CPU
@@ -38,4 +38,10 @@ type CPU struct {
 	Zombie          int       `json:"zombie"`
 	Stopped         int       `json:"stopped"`
 	Total_processes int       `json:"total_processes"`
+}
+
+// for %cpu
+
+type UsedCPU struct {
+	CPU float64 `json:"cpu"`
 }

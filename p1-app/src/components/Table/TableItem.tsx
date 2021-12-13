@@ -1,4 +1,4 @@
-import { FaBookDead } from 'react-icons/fa';
+import { IoSkullOutline } from 'react-icons/io5';
 
 interface Data {
     pid: string;
@@ -11,9 +11,11 @@ interface Data {
 interface TableItemProps {
     data: Data;
     headers: string[];
+    handleKill: (id : string) => void;
 }
 
-export const TableItem = ( {data, headers}: TableItemProps ) => {
+export const TableItem = ( {data, headers, handleKill}: TableItemProps ) => {
+
     const { pid, name, user, state, ram } = data; 
     return (
         <tr className="table_row">
@@ -33,9 +35,9 @@ export const TableItem = ( {data, headers}: TableItemProps ) => {
                 <label className="label">{ headers[4] }</label> { ram } 
             </td>
             <td className="table_cell">
-                <button className="btn_kill"> 
-                    <label className="label">{ headers[5] }</label>
-                    <FaBookDead className='btn_kill_icon' /> 
+                <button className="btn_kill" onClick={ () => handleKill(pid) }> 
+                    {/* <label className="label">{ headers[5] }</label> */}
+                    <IoSkullOutline className='btn_kill_icon' /> 
                 </button>
             </td>
         </tr>

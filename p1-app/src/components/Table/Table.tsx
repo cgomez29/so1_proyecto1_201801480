@@ -4,12 +4,13 @@ import '../../Styles/Table/table.scss';
 interface TableProps {
     headers: string[];
     data: any[];
+    handleKill: (pid : string) => void;
 }
 
-export const Table = ({headers, data} : TableProps) => {
+export const Table = ({headers, data, handleKill} : TableProps) => {
     return (
         <table className="table">
-            <caption className="table_caption">PRUEBA</caption>
+            <caption className="table_caption">Processes</caption>
             <thead className="table_head">
                 <tr className="table_row">
                     {
@@ -22,7 +23,7 @@ export const Table = ({headers, data} : TableProps) => {
             <tbody>
                     {
                         data.map( ( data, i) => (
-                            <TableItem key={i} data={data} headers={headers} />
+                            <TableItem key={i} data={data} headers={headers} handleKill={handleKill}/>
                         ))
                     }
             </tbody>

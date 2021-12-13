@@ -4,24 +4,16 @@
 #include <linux/seq_file.h>
 #include <linux/mm.h>
 
-MODULE_LICENSE("GPL");
-MODULE_AUTHOR("Cristian Gomez");
-MODULE_DESCRIPTION("Informacion de la RAM");
-MODULE_VERSION("0.1");
-
 struct sysinfo inf;
 
 static int escribir_a_proc(struct seq_file *file_proc, void *v) {       
-    unsigned long total, used, percentage;
-
+    unsigned long total, used;
     si_meminfo(&inf);
 
-    total = (inf.totalram * inf.mem_unit)/1000000;
-    used = (inf.totalram - inf.freeram - inf.bufferram ) * inf.mem_unit/1000000;
-    percentage = (used * 100)/total;  
-    
-    seq_printf(file_proc,"{\"total\":\"%lu\", \"used\":\"%lu\", \"percentage\":\"%lu\"}", total, used, percentage);
-    
+    total = inf.totalram * inf.mem_unit;
+    used = inf.freeram * inf.mem_unit;
+
+    seq_printf(file_proc,"{\"total\":%lu, \"used\":%lu, \"percentage\":0}", total, used);
     return 0;
 }
 
@@ -48,3 +40,7 @@ static void __exit modulo_c3_cleanup(void){
 
 module_init(modulo_c3_init);
 module_exit(modulo_c3_cleanup); 
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("Cristian Gomez");
+MODULE_DESCRIPTION("Informacion de la RAM");
+MODULE_VERSION("0.1");

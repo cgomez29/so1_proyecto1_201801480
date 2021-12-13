@@ -8,11 +8,11 @@
     align-content: center;
     justify-content: center;
     margin: 10px;
+    width: 100%;
 }
 
 .table-container {
     padding: $spacing-sm;
-    background: $primary;
     border-radius: $borderRadius;
     width: 80%;
     box-shadow: $box-shadow;
@@ -25,6 +25,17 @@
     }
 }
 
+.submenu-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-items: center;
+    width: 30%;
+    @include screen_sm {
+        width: 50%;
+    }
+}
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 .table-container::-webkit-scrollbar {
     display: none;
@@ -34,4 +45,4 @@
 .table-container {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
-  }
+}

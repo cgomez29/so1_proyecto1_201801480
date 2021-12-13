@@ -12,13 +12,12 @@
     letter-spacing: 5px;
     h1 {
         padding: 1.5rem 2.5rem;
-/*         background: linear-gradient(220deg, $primary, rgba($primary, 0.5));
-        border-radius: $borderRadius calc(#{$borderRadius} * 10);
- */        width: 100%;
+        width: 100%;
     }
     
     @include screen_sm {
         margin: 50px 20px 20px 70px;
+        height: 100%;
     }
     
 }
@@ -36,8 +35,6 @@
 
     h1 {
         padding: 1.5rem 2.5rem;
-/*         background: linear-gradient(220deg, $primary, rgba($primary, 0.5));
-        border-radius: $borderRadius calc(#{$borderRadius} * 10); */
         width: 100%;
     }
 }

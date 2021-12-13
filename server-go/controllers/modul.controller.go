@@ -13,7 +13,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//ModulController interface is a contract what this controller can do
+// ModulController interface is a contract what this controller can do
 type ModulController interface {
 	InfoTimeStamp(ctx *gin.Context)
 	InfoMemo(ctx *gin.Context)
@@ -24,7 +24,7 @@ type ModulController interface {
 type modulController struct {
 }
 
-//NewModulController is creating a new instance of ModulController
+// NewModulController is creating a new instance of ModulController
 func NewModulController() ModulController {
 	return &modulController{}
 }
@@ -70,6 +70,6 @@ func (c *modulController) KillPorcess(ctx *gin.Context) {
 	}
 
 	ctx.JSON(http.StatusOK, gin.H{
-		"message": "Succesfull",
+		"data": "Succesfull",
 	})
 }

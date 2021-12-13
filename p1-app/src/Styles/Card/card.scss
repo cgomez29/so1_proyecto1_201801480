@@ -4,12 +4,13 @@
     padding: 30px;
     display: flex;
     align-items: center;
-    background-color: black;
+    //background-color: black;
     box-shadow: transparent;
     max-width: 200px;
+    border: 1px solid black;
     border-radius: 20%; 
     width: 200px;
-    color: white;
+    color: black;
     flex-direction: column;
     justify-content: center;
     height: 100px;
@@ -51,8 +52,8 @@
     border-radius: 50%;
     background-image: linear-gradient(
         to top right,
-        rgb(77, 77, 77),
-        rgb(146, 146, 146)
+        rgb(177, 177, 177),
+        rgb(199, 199, 199)
     );
     position: absolute;
     left: -50%;
@@ -66,5 +67,5 @@
 }
 
 .card:hover {
-    color: white;
+    color: black;
 }

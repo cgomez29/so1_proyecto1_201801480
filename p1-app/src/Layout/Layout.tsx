@@ -15,7 +15,7 @@ export const Layout = ({ children } : any) => {
                 className={isOpen ? classes.container : classes.container2}
             >
                 { children }
-            </div>   
+            </div>
         </>
     )
 }

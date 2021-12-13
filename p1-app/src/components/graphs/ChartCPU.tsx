@@ -5,7 +5,7 @@ interface ChartRamProps {
   data: number[]
 }
 
-export const ChartRam: React.FC<any> = ({ data } : ChartRamProps ) => {
+export const ChartCPU: React.FC<any> = ({ data } : ChartRamProps ) => {
     const options = {
       chart: {
 
