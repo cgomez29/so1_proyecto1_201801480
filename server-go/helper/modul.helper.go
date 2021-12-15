@@ -47,7 +47,7 @@ func GetDataRam() model.RAM {
 	return dataJson
 }
 
-// GetDataRam method returns get data from module cpu_201801480
+// GetDataCPU method returns get data from module cpu_201801480
 func GetDataCPU() model.CPU {
 	data, err := ioutil.ReadFile("/proc/cpu_201801480")
 
@@ -78,6 +78,48 @@ func GetDataCPU() model.CPU {
 	}
 
 	return dataJson
+}
+
+// GetDataCPUForTree method returns get data from module cpu_201801480
+func GetDataCPUForTree() model.ArrayTree {
+	data, err := ioutil.ReadFile("/proc/cpu_201801480")
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	// corrections to read json
+	dataStr := strings.Replace(string(data), ",]", "]", -1)
+	dataStr = strings.Replace(string(dataStr), "]},]", "}]", -1)
+
+	var dataJson model.CPU
+	err = json.Unmarshal([]byte(dataStr), &dataJson)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	tree := model.ArrayTree{}
+
+	var arrayTree []model.Tree
+
+	for _, val := range dataJson.Processes {
+		var tree model.Tree
+		tree.Id = strconv.Itoa(val.PID)
+		tree.Label = val.Name
+		list := []model.Tree{}
+		for _, c := range val.Childs {
+			child := model.Tree{}
+			child.Id = strconv.Itoa(c.Id)
+			child.Label = c.Name
+			child.ParentId = tree.Id
+			list = append(list, child)
+		}
+		tree.Items = list
+		arrayTree = append(arrayTree, tree)
+	}
+	tree.Tree = arrayTree
+	return tree
 }
 
 func GetDataUsedCPU() model.UsedCPU {

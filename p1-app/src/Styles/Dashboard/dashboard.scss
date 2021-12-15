@@ -36,6 +36,13 @@
     }
 }
 
+.submenu-btn {
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    border: 1px solid black;
+}
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 .table-container::-webkit-scrollbar {
     display: none;

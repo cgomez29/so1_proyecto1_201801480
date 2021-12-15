@@ -11,7 +11,7 @@ export const CPUScreen = () => {
   const [data, updateData] = useState<number[]>([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
   const [now, setNow] = useState<number>(0);
   const client = useRef<any>(null);
-  
+
   useEffect(() => {
     client.current = new w3cwebsocket('ws://localhost:4000/ucpu');
 
@@ -24,12 +24,12 @@ export const CPUScreen = () => {
     client.current.onclose = () => {
       console.log("Connection closed.");
     };
-    
-    client.current.onmessage = (evt :any) => {
+
+    client.current.onmessage = (evt: any) => {
       const dataR: UsedCPU = JSON.parse((evt.data).toString());
       let num: number = parseFloat(dataR.cpu.toFixed(2));
       setNow(num);
-      
+
       updateData(current => {
         const array = [...current, num];
         if (current.length >= 9) {
@@ -43,9 +43,9 @@ export const CPUScreen = () => {
       client.current.close();
       client.current = null;
     }
- 
+
   }, [])
-  
+
   return (
     <>
       <h1>

@@ -41,7 +41,18 @@ type CPU struct {
 }
 
 // for %cpu
-
 type UsedCPU struct {
 	CPU float64 `json:"cpu"`
+}
+
+// for process
+type ArrayTree struct {
+	Tree []Tree `json:"tree"`
+}
+
+type Tree struct {
+	Id       string `json:"id"`
+	Label    string `json:"label"`
+	ParentId string `json:"parentId"`
+	Items    []Tree `json:"items"`
 }

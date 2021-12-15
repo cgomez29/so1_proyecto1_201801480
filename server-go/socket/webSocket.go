@@ -15,6 +15,7 @@ type WebSocket interface {
 	RAM(ctx *gin.Context)
 	CPU(ctx *gin.Context)
 	UsedCPU(ctx *gin.Context)
+	Tree(ctx *gin.Context)
 }
 
 type webSocket struct {
@@ -53,6 +54,7 @@ func (c *webSocket) RAM(ctx *gin.Context) {
 
 		if err != nil {
 			log.Println("error write json " + err.Error())
+			break
 		}
 		time.Sleep(1 * time.Second)
 	}
@@ -81,8 +83,38 @@ func (c *webSocket) CPU(ctx *gin.Context) {
 
 		if err != nil {
 			log.Println("error write json " + err.Error())
+			break
 		}
-		time.Sleep(1 * time.Second)
+		time.Sleep(3 * time.Second)
+	}
+}
+
+func (c *webSocket) Tree(ctx *gin.Context) {
+	ws, err := upGrader.Upgrade(ctx.Writer, ctx.Request, nil)
+	if err != nil {
+		log.Println("error get connection")
+		log.Fatal(err)
+	}
+
+	defer ws.Close()
+
+	var data model.Init
+
+	err = ws.ReadJSON(&data)
+
+	if err != nil {
+		log.Println("error read json")
+		log.Fatal(err)
+	}
+
+	for {
+		err = ws.WriteJSON(helper.GetDataCPUForTree())
+
+		if err != nil {
+			log.Println("error write json " + err.Error())
+			break
+		}
+		time.Sleep(5 * time.Second)
 	}
 }
 
@@ -109,6 +141,7 @@ func (c *webSocket) UsedCPU(ctx *gin.Context) {
 
 		if err != nil {
 			log.Println("error write json " + err.Error())
+			break
 		}
 		time.Sleep(1 * time.Second)
 	}

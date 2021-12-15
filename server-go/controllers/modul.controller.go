@@ -19,6 +19,7 @@ type ModulController interface {
 	InfoMemo(ctx *gin.Context)
 	InfoCPU(ctx *gin.Context)
 	KillPorcess(ctx *gin.Context)
+	InfoCPUTree(ctx *gin.Context)
 }
 
 type modulController struct {
@@ -48,6 +49,10 @@ func (c *modulController) InfoMemo(ctx *gin.Context) {
 
 func (c *modulController) InfoCPU(ctx *gin.Context) {
 	ctx.JSON(http.StatusOK, helper.GetDataCPU())
+}
+
+func (c *modulController) InfoCPUTree(ctx *gin.Context) {
+	ctx.JSON(http.StatusOK, helper.GetDataCPUForTree())
 }
 
 func (c *modulController) KillPorcess(ctx *gin.Context) {

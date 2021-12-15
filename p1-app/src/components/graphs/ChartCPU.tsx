@@ -8,9 +8,9 @@ interface ChartRamProps {
 export const ChartCPU: React.FC<any> = ({ data } : ChartRamProps ) => {
     const options = {
       chart: {
-
         id: 'realtime',
         height: 350,
+        foreColor: '#ff',
         animations: {
             enabled: true,
             dynamicAnimation: {
@@ -31,7 +31,7 @@ export const ChartCPU: React.FC<any> = ({ data } : ChartRamProps ) => {
         },
         title: {
             text: 'Dynamic Updating Chart',
-            align: 'left'
+            align: 'left',
         },
         markers: {
             size: 0
@@ -48,11 +48,13 @@ export const ChartCPU: React.FC<any> = ({ data } : ChartRamProps ) => {
         },
       }, 
       colors: ['#37574b', '#E91E63'],
+
+    
     };
 
     const series = [
       {
-        name: "RAM (MB)",
+        name: "% CPU",
         data: data.slice()
       },
     ];

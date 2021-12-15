@@ -49,10 +49,8 @@ export const RamScreen = () => {
           console.log("Connection closed.");
         };
 
-        return () => {
-            client.current.close();
-            client.current = null;
-        }
+        return () => client.current.close();
+        
     }, [])
 
     return (

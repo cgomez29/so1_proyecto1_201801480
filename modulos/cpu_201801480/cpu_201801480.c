@@ -48,18 +48,17 @@ static int escribir_a_proc(struct seq_file *file_proc, void *v) {
             case 0:
                 running++;
                 break;
-            case 2:
             case 1:
-            case 1026:
                 sleeping++;
                 break;
             case 4:
                 zombie++;
                 break;
-            case 5:
-                stopped++;
+            case 1026:
+                sleeping++;
                 break;
             default:
+                stopped++;
                 break;
         }
         seq_printf(file_proc, "},");

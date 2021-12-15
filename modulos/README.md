@@ -8,5 +8,3 @@
 - cat /proc/<modul_name>
 - lsmod
 ```
-
-free --mega -t
