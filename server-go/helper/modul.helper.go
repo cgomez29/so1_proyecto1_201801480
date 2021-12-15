@@ -103,15 +103,16 @@ func GetDataCPUForTree() model.ArrayTree {
 
 	var arrayTree []model.Tree
 
+	// preparando data para el arbol de procesos
 	for _, val := range dataJson.Processes {
 		var tree model.Tree
 		tree.Id = strconv.Itoa(val.PID)
-		tree.Label = val.Name
+		tree.Label = strconv.Itoa(val.PID) + " " + val.Name
 		list := []model.Tree{}
 		for _, c := range val.Childs {
 			child := model.Tree{}
 			child.Id = strconv.Itoa(c.Id)
-			child.Label = c.Name
+			child.Label = strconv.Itoa(c.Id) + " " + c.Name
 			child.ParentId = tree.Id
 			list = append(list, child)
 		}

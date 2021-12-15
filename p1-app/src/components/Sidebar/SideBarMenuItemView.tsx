@@ -13,12 +13,12 @@ export const SideBarMenuItemView = ({ item, isOpen }: SideBarMenuItemViewProps) 
     return (
         <div className='SideBarMenuItemView'>
             <Link to={item.url}>
-                <div className={classNames('ItemContent', isOpen ? '': 'collapsed')}>
+                <div className={classNames('ItemContent', isOpen ? '' : 'collapsed')}>
                     <div className='icon'>
-                        <item.icon size='32'/>
+                        <item.icon size='32' />
                     </div>
                     <span className='label'>
-                        { item.label }
+                        {item.label}
                     </span>
                 </div>
             </Link>
@@ -28,7 +28,7 @@ export const SideBarMenuItemView = ({ item, isOpen }: SideBarMenuItemViewProps) 
                         item.label
                     }
                 </div>
-                : ''
+                    : ''
             }
         </div>
     )

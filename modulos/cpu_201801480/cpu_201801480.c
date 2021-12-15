@@ -17,7 +17,10 @@ static int escribir_a_proc(struct seq_file *file_proc, void *v) {
     int  zombie = 0;
     int stopped = 0;
     unsigned long ram;
+
     seq_printf(file_proc, "{\n\"processes\":[\n");
+    // for_each_process macro para obtener los procesos 
+    // cada iteración es un proceso
     for_each_process(task) {
         seq_printf(file_proc, "{\n");
         seq_printf(file_proc,"\"pid\":%d,\n",task->pid);
@@ -82,20 +85,20 @@ static struct proc_ops archivo_operaciones = {
     .proc_read = seq_read
 };
 
-static int __init modulo_c3_init(void) {
+static int __init modulo_init(void) {
     proc_create("cpu_201801480", 0, NULL, &archivo_operaciones);
     printk(KERN_INFO "Cristian Alexander Gomez Guzman\n");
 
     return 0;
 }
  
-static void __exit modulo_c3_cleanup(void){
+static void __exit modulo_cleanup(void){
     remove_proc_entry("cpu_201801480", NULL);    
     printk(KERN_INFO "Diciembre 2021\n");
 }
 
-module_init(modulo_c3_init);
-module_exit(modulo_c3_cleanup); 
+module_init(modulo_init);
+module_exit(modulo_cleanup); 
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Cristian Gomez");

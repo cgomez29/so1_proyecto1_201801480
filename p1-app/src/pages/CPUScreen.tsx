@@ -49,7 +49,7 @@ export const CPUScreen = () => {
   return (
     <>
       <h1>
-        CPUScreen
+        CPU
       </h1>
       <div className='cpu-card-container'>
         <Card title={'% CPU'} body={`${now}`} />

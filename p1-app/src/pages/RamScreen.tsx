@@ -7,61 +7,61 @@ import { AxiosResponse } from 'axios';
 import { w3cwebsocket } from 'websocket';
 
 export const RamScreen = () => {
-    const [data, updateData] = useState<number[]>([0,0,0,0,0,0,0,0,0,0])
+    const [data, updateData] = useState<number[]>([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
     const client = useRef<any>(null);
-    
+
     const [ram, setRam] = useState<RAMData>({
         total: '',
         used: '',
         percentage: ''
     })
-    
+
     const { total, used, percentage } = ram;
-    
+
     useEffect(() => {
-        getRamState().then(({ data } : AxiosResponse) => {
+        getRamState().then(({ data }: AxiosResponse) => {
             setRam(data)
         });
     }, []);
-    
+
     useEffect(() => {
         client.current = new w3cwebsocket('ws://localhost:4000/ram');
         client.current.onopen = () => {
-          console.log("Websocket client connected")
-          const obj = { run: "start" };
-          client.current.send(JSON.stringify(obj));
+            console.log("Websocket client connected")
+            const obj = { run: "start" };
+            client.current.send(JSON.stringify(obj));
         }
-    
-        client.current.onmessage = (evt : any) => {
+
+        client.current.onmessage = (evt: any) => {
             const dataR: RAMData = JSON.parse((evt.data).toString());
             setRam(dataR);
-            
+
             updateData(current => {
                 const array = [...current, parseFloat(dataR.used)];
                 if (current.length >= 9) {
-                  array.shift();
+                    array.shift();
                 }
                 return array
-              });
+            });
         };
-         
+
         client.current.onclose = () => {
-          console.log("Connection closed.");
+            console.log("Connection closed.");
         };
 
         return () => client.current.close();
-        
+
     }, [])
 
     return (
         <>
             <h1>
-                RamScreen
+                RAM
             </h1>
-            <Card title={ 'Total RAM (MB)' } body={ total } />
-            <Card title={ 'Used RAM (MB)' } body={ used } />
-            <Card title={ '%RAM' } body={ percentage } />
-            <ChartRam data={data}/>
+            <Card title={'Total RAM (MB)'} body={total} />
+            <Card title={'Used RAM (MB)'} body={used} />
+            <Card title={'%RAM'} body={percentage} />
+            <ChartRam data={data} />
         </>
     )
 }

@@ -11,7 +11,7 @@ static int escribir_a_proc(struct seq_file *file_proc, void *v) {
     si_meminfo(&inf);
 
     total = inf.totalram * inf.mem_unit;
-    used = inf.freeram * inf.mem_unit;
+    used = inf.freeram * inf.mem_unit + inf.bufferram * inf.mem_unit +inf.sharedram * inf.mem_unit;
 
     seq_printf(file_proc,"{\"total\":%lu, \"used\":%lu, \"percentage\":0}", total, used);
     return 0;
@@ -26,20 +26,20 @@ static struct proc_ops archivo_operaciones = {
     .proc_read = seq_read
 };
 
-static int __init modulo_c3_init(void) {
+static int __init modulo_init(void) {
     proc_create("memo_201801480", 0, NULL, &archivo_operaciones);
     printk(KERN_INFO "201801480\n");
 
     return 0;
 }
  
-static void __exit modulo_c3_cleanup(void){
+static void __exit modulo_cleanup(void){
     remove_proc_entry("memo_201801480", NULL);    
     printk(KERN_INFO "SISTEMAS OPERATIVOS 1\n");
 }
 
-module_init(modulo_c3_init);
-module_exit(modulo_c3_cleanup); 
+module_init(modulo_init);
+module_exit(modulo_cleanup); 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Cristian Gomez");
 MODULE_DESCRIPTION("Informacion de la RAM");

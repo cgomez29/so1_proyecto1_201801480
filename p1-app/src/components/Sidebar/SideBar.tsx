@@ -14,7 +14,7 @@ interface SideBarMenuProps {
 }
 
 export const SideBar = ({ items, card, isOpen, setIsOpen }: SideBarMenuProps) => {
-    
+
     const handleClick = () => {
         setIsOpen(!isOpen);
     }
@@ -22,7 +22,7 @@ export const SideBar = ({ items, card, isOpen, setIsOpen }: SideBarMenuProps) =>
     return (
         <div className={classNames("SideBarMenu", isOpen ? "expanded" : "collapsed")}>
             <div className="menuButton">
-                <button 
+                <button
                     className="btnCollapsed"
                     onClick={handleClick}
                 >
@@ -32,7 +32,7 @@ export const SideBar = ({ items, card, isOpen, setIsOpen }: SideBarMenuProps) =>
             {/* <SideBarMenuCardView card={ card } isOpen={ isOpen } /> */}
             {
                 items.map(item => (
-                    <SideBarMenuItemView key={ item.id } item={ item } isOpen={ isOpen } />
+                    <SideBarMenuItemView key={item.id} item={item} isOpen={isOpen} />
                 ))
             }
         </div>

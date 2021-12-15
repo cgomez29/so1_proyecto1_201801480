@@ -32,38 +32,36 @@ export const Dashboard = () => {
 
     const { running, sleeping, zombie, stopped, total_processes, processes } = data;
 
-    
-
     useEffect(() => {
-      client.current = new w3cwebsocket('ws://localhost:4000/cpu');
-  
-      client.current.onopen = () => {
-        console.log('Websocket client connected')
-        const obj = { run: 'start' };
-        client.current.send(JSON.stringify(obj));
-      }
-  
-      client.current.onclose = () => {
-        console.log('Connection closed.');
-      };
-  
-      client.current.onmessage = (evt: any) => {
-        //preparando string
-        const json = (evt.data).toString();
-        const res : CPU = JSON.parse(json);
-        updateData(res); 
-      };
-  
-      return () => {
-        console.log("Se desmonto")
-        client.current.close();
-        client.current = null;
-      }
-  
+        client.current = new w3cwebsocket('ws://localhost:4000/cpu');
+
+        client.current.onopen = () => {
+            console.log('Websocket client connected')
+            const obj = { run: 'start' };
+            client.current.send(JSON.stringify(obj));
+        }
+
+        client.current.onclose = () => {
+            console.log('Connection closed.');
+        };
+
+        client.current.onmessage = (evt: any) => {
+            //preparando string
+            const json = (evt.data).toString();
+            const res: CPU = JSON.parse(json);
+            updateData(res);
+        };
+
+        return () => {
+            console.log("Se desmonto")
+            client.current.close();
+            client.current = null;
+        }
+
     }, []);
 
 
-    const handleKill = async (pid :string) => {
+    const handleKill = async (pid: string) => {
         const { data } = await killProcess(pid);
         console.log(data);
         notify();
@@ -81,7 +79,7 @@ export const Dashboard = () => {
 
     const handleToogle = () => {
         setToogle(!toogle);
-    }   
+    }
 
     return (
         <>
@@ -89,33 +87,33 @@ export const Dashboard = () => {
                 Dashboard
             </h1>
             <div className="card-container animate__animated animate__zoomIn">
-                <Card title={ 'Running' } body={ `${running}` } />
-                <Card title={ 'Sleeping' } body={ `${sleeping}` } />
-                <Card title={ 'Stopped' } body={ `${zombie}` } />
-                <Card title={ 'Zombie' } body={ `${stopped}` } />
-                <Card title={ 'Total' } body={ `${total_processes}` } />
+                <Card title={'Running'} body={`${running}`} />
+                <Card title={'Sleeping'} body={`${sleeping}`} />
+                <Card title={'Stopped'} body={`${zombie}`} />
+                <Card title={'Zombie'} body={`${stopped}`} />
+                <Card title={'Total'} body={`${total_processes}`} />
             </div>
             <div className='submenu-container'>
-                <button 
+                <button
                     className='submenu-btn'
                     onClick={handleToogle}
                 >
-                        <div>
-                            {
-                                toogle ?
-                                    <IoSkullOutline size="32" />
+                    <div>
+                        {
+                            toogle ?
+                                <IoSkullOutline size="32" />
                                 :
-                                    <TiFlowChildren size="32"/>
-                            }
-                        </div>
+                                <TiFlowChildren size="32" />
+                        }
+                    </div>
                 </button>
             </div>
             <div className="table-container animate__animated animate__zoomIn">
                 {
-                    toogle ? 
+                    toogle ?
                         <ProcessTree />
-                    : <Table headers={heads} data={processes} handleKill={handleKill} />
-                }   
+                        : <Table headers={heads} data={processes} handleKill={handleKill} />
+                }
             </div>
             <ToastContainer
                 position="top-center"

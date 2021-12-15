@@ -31,6 +31,7 @@ func NewWebSocket() WebSocket {
 	return &webSocket{}
 }
 
+// for RAM monitoring
 func (c *webSocket) RAM(ctx *gin.Context) {
 	ws, err := upGrader.Upgrade(ctx.Writer, ctx.Request, nil)
 	if err != nil {
@@ -60,6 +61,7 @@ func (c *webSocket) RAM(ctx *gin.Context) {
 	}
 }
 
+// CPU for CPU monitoring
 func (c *webSocket) CPU(ctx *gin.Context) {
 	ws, err := upGrader.Upgrade(ctx.Writer, ctx.Request, nil)
 	if err != nil {
@@ -89,6 +91,7 @@ func (c *webSocket) CPU(ctx *gin.Context) {
 	}
 }
 
+// Tree for see process tree
 func (c *webSocket) Tree(ctx *gin.Context) {
 	ws, err := upGrader.Upgrade(ctx.Writer, ctx.Request, nil)
 	if err != nil {
@@ -118,6 +121,7 @@ func (c *webSocket) Tree(ctx *gin.Context) {
 	}
 }
 
+// UsedCPU to see the %cpu used
 func (c *webSocket) UsedCPU(ctx *gin.Context) {
 	ws, err := upGrader.Upgrade(ctx.Writer, ctx.Request, nil)
 	if err != nil {

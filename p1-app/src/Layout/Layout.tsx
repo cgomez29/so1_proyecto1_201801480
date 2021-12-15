@@ -5,16 +5,16 @@ import { card } from '../helpers/CardSideBar';
 
 import classes from '../Styles/Layout/Layout.module.scss';
 
-export const Layout = ({ children } : any) => {
+export const Layout = ({ children }: any) => {
     const [isOpen, setIsOpen] = useState<boolean>(true)
 
     return (
         <>
             <SideBar items={items} card={card} isOpen={isOpen} setIsOpen={setIsOpen} />
-            <div 
+            <div
                 className={isOpen ? classes.container : classes.container2}
             >
-                { children }
+                {children}
             </div>
         </>
     )

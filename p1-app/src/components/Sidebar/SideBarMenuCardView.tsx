@@ -8,18 +8,18 @@ interface SideBarMenuCardViewProps {
     isOpen: boolean;
 }
 
-export const SideBarMenuCardView = ( { card, isOpen } : SideBarMenuCardViewProps) => {
+export const SideBarMenuCardView = ({ card, isOpen }: SideBarMenuCardViewProps) => {
     return (
         <div className="SideBarMenuCardView">
-            <img 
-                className="profile" 
-                src={ card.photoUrl } 
-                width="100%" 
+            <img
+                className="profile"
+                src={card.photoUrl}
+                width="100%"
                 alt={card.displayName}
             />
-            <div className={ classNames('profileInfo', isOpen? "": "collapsed") }>
-                <div className="name">{ card.displayName }</div>
-                <div className="title">{ card.title }</div>
+            <div className={classNames('profileInfo', isOpen ? "" : "collapsed")}>
+                <div className="name">{card.displayName}</div>
+                <div className="title">{card.title}</div>
             </div>
         </div>
     )

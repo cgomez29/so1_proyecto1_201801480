@@ -5,11 +5,11 @@ interface CardProps {
     body: string;
 }
 
-export const Card = ( { title, body }: CardProps ) => {
+export const Card = ({ title, body }: CardProps) => {
     return (
         <div className="card" >
-            <div className="header" > { title } </div>
-            <div className="body" >  { body } </div>
+            <div className="header" > {title} </div>
+            <div className="body" >  {body} </div>
             <div className="footer" >  </div>
         </div>
     )
