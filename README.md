@@ -26,7 +26,9 @@
         <tr>
             <th>Cristian Alexander Gomez Guzman</th>
             <th>201801480</th>
-        </tr>https://github.com/LuisLVar/Kernel_Stats
+        </tr>
+    <table>
+</div>
 
 ## Creación de un modulo
 
