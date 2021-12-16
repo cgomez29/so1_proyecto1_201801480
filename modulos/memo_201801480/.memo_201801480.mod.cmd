@@ -1,1 +1,0 @@
-cmd_/home/cristian/USAC/Proyecto1/modulos/memo_201801480/memo_201801480.mod := { echo  /home/cristian/USAC/Proyecto1/modulos/memo_201801480/memo_201801480.o;  echo; } > /home/cristian/USAC/Proyecto1/modulos/memo_201801480/memo_201801480.mod
