@@ -32,7 +32,7 @@
 
 ## Creación de un modulo
 
-### Metodo modulo_init crea el archivo con nombre memo_201801480 e impreme en el buffer 201801480 correspondiente al carnet del desarrollador
+### Metodo modulo_init crea el archivo con nombre memo_201801480 e imprime en el buffer 201801480 correspondiente al carnet del desarrollador
 ### esto sucede cuando se monta el modulo (insmod).
 ```c
 
