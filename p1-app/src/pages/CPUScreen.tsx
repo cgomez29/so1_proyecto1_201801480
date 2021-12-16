@@ -6,7 +6,6 @@ import { ChartCPU } from '../components/graphs/ChartCPU';
 
 import '../Styles/CPUScreen/CPUScreen.scss';
 
-
 export const CPUScreen = () => {
   const [data, updateData] = useState<number[]>([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
   const [now, setNow] = useState<number>(0);
@@ -54,7 +53,10 @@ export const CPUScreen = () => {
       <div className='cpu-card-container'>
         <Card title={'% CPU'} body={`${now}`} />
       </div>
-      <ChartCPU data={data} />
+      <h3 className='cpu-chart-title'>Consumo de CPU</h3>
+      <div className='cpu-chart-container'>
+        <ChartCPU data={data} />
+      </div>
     </>
   )
 }

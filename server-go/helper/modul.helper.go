@@ -9,6 +9,7 @@ import (
 	"strings"
 
 	"github.com/cgomez29/so1_proyecto1_201801480/model"
+	"github.com/shirou/gopsutil/cpu"
 )
 
 // executeCommand method for execut commands inlinux
@@ -66,7 +67,8 @@ func GetDataCPU() model.CPU {
 		fmt.Println(err)
 	}
 
-	total_ram := GetDataRam().Total
+	// RAM usada
+	total_ram := GetDataRam().Used
 
 	for i, val := range dataJson.Processes {
 		// username
@@ -74,7 +76,7 @@ func GetDataCPU() model.CPU {
 		dataJson.Processes[i].User = executeCommand(cmd)
 		// %ram
 		ram := dataJson.Processes[i].Ram / 1000000
-		dataJson.Processes[i].Ram = ram / total_ram
+		dataJson.Processes[i].Ram = ram * 100 / total_ram
 	}
 
 	return dataJson
@@ -125,11 +127,12 @@ func GetDataCPUForTree() model.ArrayTree {
 
 func GetDataUsedCPU() model.UsedCPU {
 
-	cmd := executeCommand("ps -eo pcpu | sort -k 1 -r | head -60 | tail -59")
+	var dataJson model.UsedCPU
+
+	/* cmd := executeCommand("ps -eo pcpu | sort -k 1 -r | head -60 | tail -59")
 
 	list := strings.Split(cmd, "\n")
 
-	var dataJson model.UsedCPU
 	var cpu_utilizado float64
 
 	for _, val := range list {
@@ -145,7 +148,15 @@ func GetDataUsedCPU() model.UsedCPU {
 		}
 	}
 
-	dataJson.CPU = cpu_utilizado / 12 // cpu -> 12
+	dataJson.CPU = cpu_utilizado / 12 // cpu -> 12 */
+
+	cpu, _ := cpu.Percent(0, true)
+
+	for _, val := range cpu {
+		dataJson.CPU += val
+	}
+
+	dataJson.CPU = dataJson.CPU / 12
 
 	return dataJson
 }

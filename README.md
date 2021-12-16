@@ -26,12 +26,7 @@
         <tr>
             <th>Cristian Alexander Gomez Guzman</th>
             <th>201801480</th>
-        </tr>
-    </table>
-</div>
-<br>
-<hr>
-
+        </tr>https://github.com/LuisLVar/Kernel_Stats
 
 ## Creación de un modulo
 
@@ -154,7 +149,7 @@
 </div>
 
 ### Monitor de RAM
-### Monitoreo del esta de la ram ademas de una grafica para ver su uso en tiempo real.
+### Monitoreo del esta de la RAM ademas de una gráfica para ver su uso en tiempo real.
 
 <div>
     <p align="center">
@@ -163,7 +158,7 @@
 </div>
 
 ### Monitor de CPU
-### Monitoreo del estado de uso del CPU ademas de una grafica para ver su uso en tiempo real.
+### Monitoreo del estado de uso del CPU ademas de una gráfica para ver su uso en tiempo real.
 
 <div>
     <p align="center">

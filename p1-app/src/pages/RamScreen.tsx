@@ -6,6 +6,8 @@ import { RAMData } from '../interfaces/RamScreen';
 import { AxiosResponse } from 'axios';
 import { w3cwebsocket } from 'websocket';
 
+import '../Styles/RAMScreen/RAMScreen.scss';
+
 export const RamScreen = () => {
     const [data, updateData] = useState<number[]>([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
     const client = useRef<any>(null);
@@ -37,7 +39,7 @@ export const RamScreen = () => {
             setRam(dataR);
 
             updateData(current => {
-                const array = [...current, parseFloat(dataR.used)];
+                const array = [...current, parseFloat(dataR.percentage)];
                 if (current.length >= 9) {
                     array.shift();
                 }
@@ -61,6 +63,7 @@ export const RamScreen = () => {
             <Card title={'Total RAM (MB)'} body={total} />
             <Card title={'Used RAM (MB)'} body={used} />
             <Card title={'%RAM'} body={percentage} />
+            <h3 className='ram-chart-title'>Consumo de RAM</h3>
             <ChartRam data={data} />
         </>
     )

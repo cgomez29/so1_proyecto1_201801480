@@ -52,7 +52,7 @@ export const ChartRam: React.FC<any> = ({ data }: ChartRamProps) => {
 
   const series = [
     {
-      name: "RAM (MB)",
+      name: "RAM %",
       data: data.slice()
     },
   ];

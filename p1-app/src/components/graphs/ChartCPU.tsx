@@ -29,10 +29,6 @@ export const ChartCPU: React.FC<any> = ({ data }: ChartRamProps) => {
       stroke: {
         curve: 'straight'
       },
-      title: {
-        text: 'Dynamic Updating Chart',
-        align: 'left',
-      },
       markers: {
         size: 0
       },
@@ -48,7 +44,6 @@ export const ChartCPU: React.FC<any> = ({ data }: ChartRamProps) => {
       },
     },
     colors: ['#37574b', '#E91E63'],
-
 
   };
 
